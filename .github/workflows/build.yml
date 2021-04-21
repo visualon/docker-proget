@@ -104,8 +104,6 @@ jobs:
             ./push.sh
           fi
         working-directory: ./linux
-        env:
-          IMAGE: ${{ env.IMAGE }}:${{ env.TAG }}
 
   # multi-arch:
   #   needs: [linux, windows]

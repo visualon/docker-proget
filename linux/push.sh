@@ -17,6 +17,6 @@ patch=${BASH_REMATCH[3]}
 # Tag and push image for each additional tag
 for tag in {"${major}","${major}.${minor}","${major}.${minor}.${patch}"}; do
   echo "Tagging ${IMAGE}:${tag}"
-  docker tag $IMAGE ${IMAGE}:${tag}
+  docker tag ${IMAGE}:${TAG} ${IMAGE}:${tag}
   docker push ${IMAGE}:${tag}
 done
