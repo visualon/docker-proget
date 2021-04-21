@@ -4,5 +4,12 @@
   "labels": ["deps"],
   "digest": {
     "extends": ["schedule:daily"]
-  }
+  },
+  "hostRules": [
+    {
+      "hostName": "proget.inedo.com",
+      "abortOnError": true,
+      "abortIgnoreStatusCodes": [500]
+    }
+  ]
 }
