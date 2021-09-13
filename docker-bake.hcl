@@ -32,8 +32,8 @@ target "settings" {
   inherits   = ["settings"]
   cache-from = [
     "type=registry,ref=ghcr.io/${OWNER}/cache:${FILE}",
-    "type=registry,ref=ghcr.io/${OWNER}/cache:${FILE}-${TAG}"
-    "type=registry,ref=ghcr.io/${OWNER}/cache:${FILE}-${VERSION}"
+    "type=registry,ref=ghcr.io/${OWNER}/cache:${FILE}-${TAG}",
+    "type=registry,ref=ghcr.io/${OWNER}/cache:${FILE}-${VERSION}",
   ]
 }
 
@@ -42,7 +42,7 @@ target "build_ghcr" {
   output   = ["type=registry"]
   tags     = [
     "ghcr.io/${OWNER}/cache:${FILE}-${TAG}",
-    notequal("", VERSION) ? "ghcr.io/${OWNER}/cache:${FILE}-${VERSION}" : ""
+    notequal("", VERSION) ? "ghcr.io/${OWNER}/cache:${FILE}-${VERSION}" : "",
   ]
   cache-to = ["type=inline,mode=max"]
 }
@@ -52,7 +52,7 @@ target "build_docker" {
   output   = ["type=docker"]
   tags     = [
     "ghcr.io/${OWNER}/${FILE}:${TAG}",
-    notequal("", VERSION) ? "ghcr.io/${OWNER}/${FILE}:${VERSION}" : ""
+    notequal("", VERSION) ? "ghcr.io/${OWNER}/${FILE}:${VERSION}" : "",
   ]
 }
 
@@ -61,6 +61,6 @@ target "push_ghcr" {
   output   = ["type=registry"]
   tags     = [
     "ghcr.io/${OWNER}/${FILE}:${TAG}",
-    notequal("", VERSION) ? "ghcr.io/${OWNER}/${FILE}:${VERSION}" : ""
+    notequal("", VERSION) ? "ghcr.io/${OWNER}/${FILE}:${VERSION}" : "",
   ]
 }
