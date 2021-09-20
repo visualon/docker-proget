@@ -31,7 +31,7 @@ jobs:
         shell: bash
 
       - name: docker-config
-        uses: renovatebot/internal-tools@397bb2d4b0030eb4dd63b0f84780cfd5d24d6649 # renovate: tag=v1.8.8
+        uses: renovatebot/internal-tools@fa8facb62274a4735ed39e72218f90723847e8fb # renovate: tag=v1.8.11
         with:
           command: docker-config
 
