@@ -1,4 +1,4 @@
 services:
   sut:
     image: '${IMAGE}'
-    command: dotnet /usr/local/proget/service/ProGet.Service.dll help
+    command: /usr/local/proget/service/ProGet.Service help
