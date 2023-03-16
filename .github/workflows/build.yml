@@ -11,6 +11,10 @@ env:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
+  
+permissions:
+  contents: read
+  packages: write
 
 jobs:
 
