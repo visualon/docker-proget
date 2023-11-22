@@ -1,13 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["visualon/renovate-config", "visualon/renovate-config:automergePatch"],
+  "extends": [
+    "visualon/renovate-config",
+    "visualon/renovate-config:automergePatch"
+  ],
   "labels": ["deps"],
   "digest": {
     "extends": ["schedule:daily"]
   },
   "hostRules": [
     {
-      "hostName": "proget.inedo.com",
+      "matchHost": "proget.inedo.com",
       "abortOnError": true,
       "abortIgnoreStatusCodes": [500]
     }
