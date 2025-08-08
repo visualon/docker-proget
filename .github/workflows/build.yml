@@ -11,10 +11,9 @@ env:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
-  
+
 permissions:
   contents: read
-  packages: write
 
 jobs:
 
@@ -22,6 +21,10 @@ jobs:
     runs-on: ubuntu-latest
 
     timeout-minutes: 30
+
+    permissions:
+      contents: read
+      packages: write
 
     env:
       # TAG: linux
@@ -55,3 +58,28 @@ jobs:
       - name: Publish the Docker image
         if: github.ref == 'refs/heads/main'
         run: docker buildx bake build
+
+
+  release:
+    needs: build
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'main'
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Init
+        run: ./bin/init.sh
+
+      - uses: ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af # v1.18.0
+        with:
+          allowUpdates: true
+          body: See https://my.inedo.com/downloads/issues?product=ProGet&fromVersion=${{ env.VERSION }}&toVersion=${{ env.VERSION }} for more changes
+          commit: ${{ github.sha }}
+          name: ${{ env.VERSION }}
+          tag: v${{ env.VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
