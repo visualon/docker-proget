@@ -1,4 +1,5 @@
 services:
   sut:
-    image: '${IMAGE}'
-    command: /usr/local/proget/service/ProGet.Service help
+    image: '${IMAGE-ghcr.io/visualon/proget}'
+    command: sh -c 'set -ex; (/usr/local/proget/service/proget run&); sleep 5; curl -sv http://localhost:80'
+    entrypoint: ''
